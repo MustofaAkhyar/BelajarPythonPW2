@@ -1,0 +1,11 @@
+{% extends "main.html" %}
+{% block tittle %}Fakultas{% endblock %}
+{% block content %}
+    <h1>Fakultas</h1>
+    ini halaman fakultas
+    <ul>
+        {% for data in fakultas %}
+            <li>{{ data }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

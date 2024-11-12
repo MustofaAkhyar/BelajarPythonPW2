@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% block tittle %}Program Studi{% endblock %}
+{% block content %}
+<div class="m-5">
+    <h1>Program Studi</h1>
+    ini halaman Program Studi
+    <table class="table" border="5">
+        <thead>
+            <tr>
+                <th scope="col">Prodi</th>
+                <th scope="col">Fakultas</th>
+                <th scope="col">UK</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for data in prodi %}
+            <tr>
+                <td>{{ data.nama }}</td>
+                <td>{{ data.fakultas }}</td>
+                <td>{% if data.fakultas == "FIKR" %}
+                    8.000.000
+                    {% else %}
+                    6.000.000
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+    </table>
+</div>
+{% endblock %}
