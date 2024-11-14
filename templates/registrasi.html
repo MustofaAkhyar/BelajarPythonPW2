@@ -1,0 +1,77 @@
+{% extends "main.html" %}
+{% block tittle %}Registrasi Calon Mahasiswa Baru{% endblock %}
+{% block content %}
+<h1>Registrasi Mahasiswa Baru</h1>
+{% if pesan_konfirmasi %}
+<div class="alert alert-success">
+    {{ pesan_konfirmasi }}
+</div>
+<table class="table" border="3">
+    <thead>
+        <tr>
+            <th scope="col">Nisn</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Email</th>
+            <th scope="col">Tanggal Lahir</th>
+            <th scope="col">Asal Sekolah</th>
+            <th scope="col">Pilihan Prodi</th>
+            <th scope="col">Foto</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ nisn }}</td>
+            <td>{{ nama }}</td>
+            <td>{{ email }}</td>
+            <td>{{ tanggal_lahir }}</td>
+            <td>{{ asal_sekolah }}</td>
+            <td>{{ pilihan_prodi }}</td>
+            <td>
+                {% if foto %}
+                <img src="{{ url_for('static', filename=foto.split('static/')[-1]) }}" alt="Foto" class="img-thumbnail"
+                    width="100" />
+                {% endif %}
+            </td>
+        </tr>
+</table>
+{% endif %}
+<form action="/registrasi" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="nisn">Nisn</label>
+        <input type="text" class="form-control" name="nisn">
+    </div>
+    <div class="form-group">
+        <label for="nama">Nama</label>
+        <input type="text" class="form-control" name="nama">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email">
+    </div>
+    <div class="form-group">
+        <label for="tanggal_lahir">Tanggal Lahir</label>
+        <input type="date" class="form-control" name="tanggal_lahir">
+    </div>
+    <div class="form-group">
+        <label for="asal_Sekolah">Asal Sekolah</label>
+        <input type="text" class="form-control" name="asal_sekolah">
+    </div>
+    <div>
+        <label for="pilihan_prodi">Pilihan Program Studi</label>
+        <select name="pilihan_prodi" id="pilihan_prodi" class="form-select">
+            <option disabled value selected>PILIH</option>
+            <option value="IF">informatika</option>
+            <option value="SI">Sistem Informasi</option>
+            <option value="TE">Teknik Elektro</option>
+        </select>
+        <div class="row mt-3">
+            <div class="form-group col">
+                <label for="foto">Foto</label>
+                <input type="file" name="foto" class="form-control">
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+    </div>
+</form>
+{% endblock %}
